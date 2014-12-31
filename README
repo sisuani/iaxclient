@@ -115,50 +115,13 @@ have been much more difficult!) without the great work from these
 projects.
 
 =======================================================================
-BUILDING THE LIBRARY:
+BUILDING THE LIBRARY: (tested on Gentoo/Ubuntu/Windows XP/Windows 7)
 
-From the "lib" directory:
-	Linux: type "make" using standard gnu make/gcc
-	FreeBSD: type "gmake" using standard gnu make/gcc
-	MacOSX: type "make" using Apple Dev Tools (gnu make/gcc)
-	Win32: type "make" using Cygwin or Cygwin and MinGW (see below)
-	Solaris: type "gmake" using standard gnu make/gcc
+cd lib
+mkdir build && cd build
+cmake ..
+make -jX
 
-For a shared library, make clean, then make shared.
-You should receive a shared library (.dll, .so, .dylib, depending on your platform).
-
-Win32 Cygwin/MinGW; General:
-The Win32 build has been tested using the Cygwin Environment, and the
-MinGW port of the GCC compiler suite.   Previously, we only supported
-compilation with the cygwin _and_ mingw environments installed.  We are
-moving (4/20/2005) to support having the cygwin environment alone, with
-cygwin's own mingw packages, instead.   Compilation of the basic sample
-clients (but not iaxcomm), works fine with cygwin alone.
-
-Cygwin Alone:
-To install cygwin, download and run http://www.cygwin.com/setup.exe
-You will need to install, in addition to the defaults, these packages:
-gcc-mingw, gcc-mingw-core, (and for C++ clients, gcc-mingw-g++).
-[please let the maintainers know if other non-default packages are
-required].
-
-There's lots of goodies available from cygwin.
-
-Once you have this installed, open the cygwin shell, and build.  The
-library makefiles use the -mno-cygwin option, to create native Win32
-binaries which do _not_ require cygwin.dll, or any special runtimes.
-
-Cygwin and MinGW:
-Previously, we advocated installing cygwin environment (for Gnu Make and
-such), alongside the MinGW distribution itself, as outlined here.  This
-may still be necessary for the Wx-Windows based clients like iaxcomm.
-
-http://www.mingw.org/mingwfaq.shtml#faq-usingwithcygwin for the
-MinGW FAQ entry on using MinGW with Cygwin.  You do need to make sure
-that you install the Gnu "make" utility when you install cygwin.
-
-It should probably also work if you use the MSYS environment and the
-MinGW compiler, but this configuration is not as well tested.
 
 =======================================================================
 LIBRARY ORGANIZATION/DESIGN/CODING CONVENTION NOTES

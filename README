@@ -1,47 +1,26 @@
 =======================================================================
-INTRODUCTION
+BUILDING THE LIBRARY: (tested on Gentoo/Ubuntu/Windows XP/Windows 7)
 
-This is iaxclient, a portable IAX/IAX2 protocol telephony client library.
+* Linux:
+first Install dev tools (gcc, cmake, make, ..)
+Install openal
 
-The library itself is in the directory "lib", located in the same
-directory as this README file.
+- Iaxclient:
+cd lib
+mkdir build && cd build
+cmake ..
+make
 
-The library is designed to build for multiple platforms, and currently
-supports Linux, MacOSX, Solaris, and Win32 platforms.  It is designed to handle
-the "backend" of IAX telephony operations, including call handling,
-network protocols, audio encoding/decoding, and audio capture/playback.
-In it's future, it may be extended to also handle video encode, decode,
-capture and playback.
+* Windows:
+first Install mingw and cmake
+Download openal, compile (cmake -G "MinGW Makefiles" .. ; make); copy dll to lib path (ex: c:\mingw32\i686-w64-ming32\lib\)
 
-There are also sample clients, which use the library, included here.
-
-Currently, these are all stored under the "simpleclient" directory, and
-there are three of them:
-
-simpleclient/testcall:  A simple command-line oriented test program,
-			useful for testing and debugging.   It supports 
-			all of the same platforms as the library itself.
-
-simpleclient/wx:	A wxWindows (see wxwindows.org) based GUI
-			client.  This client also supports all of the
-			same platforms as the library itself.
-
-simpleclient/WinIAX:  	A MSVC/Win32 client.  This only works with
-			Win32, obviously, and was contributed by
-			Faizan "Tili" Naqvi <faizan@tilizone.com>
-
-simpleclient/tkiaxphone	A command-line client, with a Tcl/Tk GUI
-			client that drives it.  It should work on
-			all the platforms
-
-
-The home page for iaxclient is "http://iaxclient.sourceforge.net/"
-
-Up-to-date versions of iaxclient are available from a sourceforge SVN
-repository.
-
-CVS tarballs are also available as a link from the home page.
-
+- Iaxclient:
+cd lib
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" ..
+mingw32-make -f Makefile
 
 =======================================================================
 LICENSES
@@ -115,15 +94,6 @@ have been much more difficult!) without the great work from these
 projects.
 
 =======================================================================
-BUILDING THE LIBRARY: (tested on Gentoo/Ubuntu/Windows XP/Windows 7)
-
-cd lib
-mkdir build && cd build
-cmake ..
-make -jX
-
-
-=======================================================================
 LIBRARY ORGANIZATION/DESIGN/CODING CONVENTION NOTES
 
 The iaxclient library is designed to be a small, simple library that
@@ -138,22 +108,6 @@ by client programs, but not rely on other headers (i.e. those from
 included libraries).  The "iaxclient-lib.h" header file is the main
 header file for the library's internal declarations.
 
-
-=======================================================================
-
-SAMPLE CLIENTS
-
-The "testcall" sample program, provided in the simpleclient/testcall
-directory (above this "lib" directory) is a simple client program which
-should also be portable.  
-
-The Makefile for "testcall" will automatically build or update the
-library when it it built, and the requirements for building testcall are
-the same as for the library itself.
-
-
-See README files in the other sample clients for directions for building
-these.
 
 =========================================================================
 
@@ -197,26 +151,4 @@ http://www.ilbcfreeware.org/software.html
 
 AUDIO DRIVERS
 
-The supported audio driver for iaxclient is audio_portaudio; which uses
-a snapshot of the portaudio v19 library (included, with some minor 
-modifications) to access native audio services on each platform.  
-It includes support for Windows (WMME), Linux (OSS, ALSA, JACK) and
-MacOS X (CoreAudio). 
-
-There is a (presently broken) WMME-native audio driver which was used
-during early development, and is no longer maintained.  You probably
-don't want to use this.
-
-All three Linux PortAudio drivers are enabled by default and supporting
-libraries need to be present on the system in order to build. If you
-prefer to disable one or more of the drivers, use the USE_PA_* options
-in the main Makefile.  
-
-Dmitry Panfilov has contributed a basic native ALSA driver for Linux.
-Not all features are supported with this driver.  It is not compiled in
-by default, because this would add alsa libraries to the build and link
-dependencies -- and we don't have a good way of communicating that to
-applications (like pkg-config stuff, etc). To use it, though, you just
-need to change AUDIO_ALSA=0 to AUDIO_ALSA=1 in the Makefile.
-
-
+Use openal

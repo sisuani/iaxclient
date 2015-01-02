@@ -859,7 +859,6 @@ static int get_sample_cnt(struct iax_event *e)
 
 static int iax_xmit_frame(struct iax_frame *f)
 {
-    printf("A\n");
 	int res;
 #ifdef DEBUG_SUPPORT
 	if (debug) {

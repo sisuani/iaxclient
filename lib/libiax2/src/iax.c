@@ -882,7 +882,6 @@ static int iax_xmit_frame(struct iax_frame *f)
 			(struct sockaddr *)&(f->session->transfer) :
 			(struct sockaddr *)&(f->session->peeraddr),
 			sizeof(f->session->peeraddr));
-    printf("C\n");
 	return res;
 }
 
